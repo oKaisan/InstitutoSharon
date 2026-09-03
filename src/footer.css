@@ -1,0 +1,77 @@
+footer {
+  position: relative;
+  padding-top: 82px;
+  background: #242321;
+}
+
+.footer-brand {
+  max-width: 280px;
+}
+
+.footer-brand img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  padding: 3px;
+  background: #fff;
+}
+
+.footer-brand p {
+  margin-top: 22px;
+  color: #e3dbcf;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.footer-brand strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.footer-brand::after {
+  content: 'INSTITUTO SHARON  /  MANAUS - AM';
+  display: block;
+  margin-top: 26px;
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: .15em;
+}
+
+.footer-links {
+  margin-top: -116px;
+  padding-right: 4vw;
+  gap: 120px;
+}
+
+.footer-links div {
+  min-width: 125px;
+}
+
+.footer-links span {
+  margin-bottom: 5px;
+}
+
+.footer-bottom {
+  margin-top: 105px;
+  color: #9b9388;
+}
+
+@media (max-width: 800px) {
+  .footer-links {
+    margin-top: 50px;
+    padding-right: 0;
+    gap: 45px;
+  }
+
+  .footer-bottom {
+    margin-top: 65px;
+  }
+}
