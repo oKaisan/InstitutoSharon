@@ -6,7 +6,7 @@ import { locations, locationSearchUrl } from './data/locations'
 
 const imageRoot = '/images/instituto'
 const publicLocationUrl = 'https://www.google.com/maps/search/?api=1&query=Instituto+Sharon%2C+Avenida+Torquato+Tapajos%2C+597%2C+Manaus%2C+AM'
-const logo = `${imageRoot}/logo/${encodeURIComponent('Logo instituto sharon.PNG')}`
+const logo = `${imageRoot}/logo/710280210_18073792778661261_6655366951243055175_n.jpg`
 const courseImages = [
   'WhatsApp Image 2026-09-03 at 20.09.00.jpeg',
   'WhatsApp Image 2026-09-03 at 20.09.01 (1).jpeg',
@@ -27,17 +27,6 @@ const patientImages = [
   'WhatsApp Image 2026-09-03 at 20.15.31 (1).jpeg',
   'WhatsApp Image 2026-09-03 at 20.15.31 (2).jpeg',
   'WhatsApp Image 2026-09-03 at 20.15.31.jpeg',
-]
-const structureImages = [
-  { image: 'fachada.jpeg', category: 'Instituto Sharon', title: 'Nossa unidade', description: 'Um espaço completo para formação, atendimento e acolhimento em Manaus.' },
-  { image: 'auditorio.jpeg', category: 'Formação profissional', title: 'Auditório', description: 'Ambiente preparado para aulas, encontros e experiências de aprendizagem.' },
-  { image: 'saladeaula.jpeg', category: 'Formação profissional', title: 'Sala de aula', description: 'Salas planejadas para unir conforto, tecnologia e prática.' },
-  { image: 'saladeaula[].jpeg', category: 'Formação profissional', title: 'Sala multimídia', description: 'Estrutura para acompanhar conteúdos e desenvolver novas habilidades.' },
-  { image: 'salade.jpeg', category: 'Prática clínica', title: 'Clínica e atendimento', description: 'Ambiente equipado para vivências práticas com supervisão profissional.' },
-  { image: 'instrumentos.jpeg', category: 'Prática clínica', title: 'Instrumentos e equipamentos', description: 'Recursos que aproximam o aprendizado da rotina profissional.' },
-  { image: 'lazer.jpeg', category: 'Convivência', title: 'Recepção e convivência', description: 'Um ambiente acolhedor para receber alunos, pacientes e parceiros.' },
-  { image: 'lazer (2).jpeg', category: 'Convivência', title: 'Detalhes que acolhem', description: 'Espaços pensados para tornar cada visita mais confortável.' },
-  { image: 'lazer (3).jpeg', category: 'Convivência', title: 'Um espaço para evoluir', description: 'A estrutura do Instituto Sharon acompanha diferentes momentos da sua jornada.' },
 ]
 const courses = [
   { title: 'Harmonização Orofacial', category: 'HOF', type: 'Capacitação', image: courseImages[0] },
@@ -64,7 +53,8 @@ function SitePage({ title, emphasis, eyebrow, children }: SitePageProps) {
 }
 
 function InstitutePage() {
-  return <SitePage title="Um espaço para" emphasis="aprender e evoluir." eyebrow="Instituto Sharon / Estrutura"><p className="page-intro">Conheça a estrutura preparada para conectar formação profissional, saúde e cuidado em Manaus.</p><div className="structure-grid">{structureImages.map((item, index) => <article className={index === 0 ? 'structure-card structure-card-featured' : 'structure-card'} key={item.image}><div className="structure-image"><img src={`${imageRoot}/estrutura/${encodeURIComponent(item.image)}`} alt={`${item.title} do Instituto Sharon`} loading={index > 2 ? 'lazy' : undefined} /><span>0{index + 1}</span></div><div><div className="section-kicker">{item.category}</div><h2>{item.title}</h2><p>{item.description}</p></div></article>)}</div></SitePage>
+  const rooms = ['Salas de aula', 'Clínica e atendimento', 'Recepção e convivência']
+  return <SitePage title="Um espaço para" emphasis="aprender e evoluir." eyebrow="Instituto Sharon / Estrutura"><p className="page-intro">Conheça a estrutura preparada para conectar formação profissional, saúde e cuidado em Manaus.</p><div className="structure-grid">{rooms.map((room) => <article className="structure-card" key={room}><div className="structure-placeholder"><span>Imagem oficial<br />em breve</span></div><div><div className="section-kicker">Instituto Sharon</div><h2>{room}</h2><p>Conteúdo da estrutura será atualizado com imagens e informações oficiais da equipe.</p></div></article>)}</div></SitePage>
 }
 
 function PatientsPage() {
