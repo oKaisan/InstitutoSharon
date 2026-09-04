@@ -37,7 +37,7 @@ footer {
 }
 
 .footer-brand::after {
-  content: 'INSTITUTO SHARON  /  MANAUS - AM';
+  content: none;
   display: block;
   margin-top: 26px;
   color: var(--gold);

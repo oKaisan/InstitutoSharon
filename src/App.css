@@ -67,7 +67,7 @@ footer { padding: 70px max(5vw, calc((100% - var(--max)) / 2)) 24px; background:
 /* Motion layer: reveals content as it enters the reading flow. */
 .reveal-ready .section-pad > *, .reveal-ready .patient-copy, .reveal-ready .patient-visual, .reveal-ready .pillar, .reveal-ready .course-card, .reveal-ready .location-card {
 	animation: none;
-	opacity: 1;
+	opacity: 0;
 	transform: translateY(18px);
 	transition: opacity .65s ease var(--reveal-delay, 0ms), transform .65s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms);
 }
@@ -148,6 +148,15 @@ h2 { line-height: 1.08; }
 .course-page-image { height: 240px; overflow: hidden; position: relative; background: var(--cream); }
 .course-page-image img { width: 100%; height: 100%; display: block; object-fit: contain; transition: transform .6s ease; }
 .course-page-card:hover .course-page-image img { transform: scale(1.035); }
+.course-page-card { animation: course-card-in .45s cubic-bezier(.2,.7,.2,1) both; }
+.course-page-card:nth-child(2) { animation-delay: 70ms; }
+.course-page-card:nth-child(3) { animation-delay: 140ms; }
+.course-page-card:nth-child(4) { animation-delay: 210ms; }
+.course-page-card:nth-child(5) { animation-delay: 280ms; }
+.course-page-card:nth-child(6) { animation-delay: 350ms; }
+.course-page-card:nth-child(7) { animation-delay: 420ms; }
+.course-page-card:nth-child(8) { animation-delay: 490ms; }
+@keyframes course-card-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 .course-page-image span { position: absolute; left: 14px; bottom: 14px; padding: 5px 8px; background: rgba(255,255,255,.9); color: var(--muted); font-size: 9px; letter-spacing: .05em; text-transform: uppercase; }
 .course-page-info { padding: 24px 24px 28px; }
 .course-page-info h2 { margin: 17px 0 10px; font-size: 28px; }
@@ -228,8 +237,39 @@ h2 { line-height: 1.08; }
 .contact-cta .contact-form input, .contact-cta .contact-form select { width: 100%; min-width: 0; padding: 8px 0; }
 .contact-cta .contact-form .form-submit { justify-self: start; margin-top: 4px; }
 .contact-cta .contact-form small { display: block; line-height: 1.5; }
+.final-cta { width: 100%; margin: 0; padding: 82px max(5vw, calc((100% - var(--max)) / 2)) 88px; display: flex; align-items: end; justify-content: space-between; gap: 40px; background: var(--ink); color: #f5f0e8; border-top: 1px solid var(--gold); }
+.home-shell .results { padding-bottom: 48px; }
+.home-shell .final-cta { padding-top: 48px; padding-bottom: 62px; }
+.final-cta h2 { margin: 18px 0 0; color: #f5f0e8; font-size: clamp(34px, 4vw, 54px); }
+.final-cta-actions { display: flex; align-items: center; gap: 28px; }
+.final-cta .text-link { white-space: nowrap; }
+.final-cta .text-link { color: #f5f0e8; }
+.final-cta .button-dark { background: var(--gold); color: white; }
+@media (max-width: 800px) { .final-cta { display: grid; align-items: start; padding: 65px 0 72px; }.final-cta-actions { align-items: start; flex-wrap: wrap; gap: 20px; } }
 .home-shell > main > .patient-band, .home-shell > main > .model-section, .home-shell > main > .locations, .home-shell > main > .contact-cta { display: none; }
+.home-location { width: min(var(--max), calc(100% - 10vw)); margin: auto; padding: 70px 0 78px; display: grid; grid-template-columns: .8fr 1.2fr; gap: 7vw; align-items: center; border-top: 1px solid var(--line); }
+.home-location h2 { margin-bottom: 16px; font-size: clamp(34px, 4vw, 52px); }
+.home-location p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.home-location iframe, .real-map { width: 100%; height: 260px; display: block; border: 1px solid var(--line); background: #e7e0d5; }
+.real-map-link { display: block; overflow: hidden; }
+.real-map-link .real-map { object-fit: cover; transition: transform .5s ease; }
+.real-map-link:hover .real-map { transform: scale(1.02); }
+.map-visual { position: relative; min-height: 260px; overflow: hidden; border: 1px solid var(--line); background-color: #e7e0d5; background-image: linear-gradient(32deg, transparent 48%, rgba(255,255,255,.72) 49%, rgba(255,255,255,.72) 51%, transparent 52%), linear-gradient(118deg, transparent 47%, rgba(255,255,255,.6) 48%, rgba(255,255,255,.6) 50%, transparent 51%), repeating-linear-gradient(12deg, transparent 0 32px, rgba(198,161,91,.16) 33px 34px); background-size: 180px 150px, 220px 180px, auto; }
+.map-road { position: absolute; display: block; height: 1px; background: rgba(255,255,255,.8); transform-origin: left center; }
+.map-road-one { width: 130%; left: -10%; top: 32%; transform: rotate(-13deg); }
+.map-road-two { width: 115%; left: -5%; top: 70%; transform: rotate(8deg); }
+.map-road-three { width: 80%; left: 28%; top: 4%; transform: rotate(78deg); }
+.map-marker { position: absolute; left: 53%; top: 49%; display: inline-flex; align-items: center; gap: 7px; color: var(--gold); transform: translate(-50%, -50%); }
+.map-marker svg { padding: 5px; width: 34px; height: 34px; color: white; background: var(--gold); border-radius: 50%; box-shadow: 0 0 0 8px rgba(198,161,91,.18); }
+.map-marker b { padding: 7px 9px; background: rgba(255,255,255,.9); color: var(--ink); font-size: 10px; font-weight: 600; white-space: nowrap; }
+.map-visual small { position: absolute; right: 14px; bottom: 12px; color: var(--muted); font-size: 9px; line-height: 1.5; text-align: right; }
+@media (max-width: 800px) { .home-location { grid-template-columns: 1fr; gap: 30px; padding: 58px 0 65px; }.home-location iframe, .home-location .real-map { height: 230px; min-height: 230px; } }
 .home-shell > main > .intro { display: none; }
+.home-faq { border-top: 1px solid var(--line); }
+.home-faq-list { max-width: 820px; margin-top: 42px; border-top: 1px solid var(--line); }
+.home-faq-list .faq-page-item button { padding: 20px 0; }
+.home-faq-list .faq-page-item p { padding-bottom: 20px; }
+.home-faq-link { margin-top: 28px; }
 .home-shell .hero-image { background-image: linear-gradient(90deg, rgba(41,39,37,.12), rgba(41,39,37,.08)), url('/images/instituto/instagram/WhatsApp%20Image%202026-09-03%20at%2021.07.56.jpeg'); background-position: center; background-size: cover; }
 .home-shell .hero-image::after { content: ''; }
 .home-shell .hero-image { border: 1px solid rgba(198,161,91,.35); box-shadow: 16px 16px 0 rgba(243,235,221,.9); }
@@ -257,13 +297,25 @@ h2 { line-height: 1.08; }
 .location-page-card > div { padding: 30px 0; }
 .location-page-card p { color: var(--muted); line-height: 1.7; }
 .location-page-card iframe { width: 100%; min-height: 420px; border: 0; }
+.location-page-card .map-visual { min-height: 420px; }
 .contact-page-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; margin-top: 65px; padding-top: 30px; border-top: 1px solid var(--line); }
 .contact-page-facts { display: grid; align-content: start; gap: 28px; margin-top: 18px; }
 .contact-page-facts span { color: var(--muted); font-size: 13px; line-height: 1.7; }
 .contact-page-form { max-width: 520px; }
+.enrollment-page-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; margin-top: 65px; padding-top: 30px; border-top: 1px solid var(--line); }
+.enrollment-page-note h2 { max-width: 360px; margin: 16px 0; font-size: 34px; }
+.enrollment-page-note p { max-width: 360px; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.enrollment-page-grid .contact-page-form { max-width: 560px; }
 .contact-page-form form { display: grid; gap: 18px; margin-top: 24px; }
 .contact-page-form label { display: grid; gap: 7px; color: var(--muted); font-size: 12px; }
 .contact-page-form input, .contact-page-form textarea { width: 100%; padding: 11px 0; border: 0; border-bottom: 1px solid var(--line); outline: 0; background: transparent; color: var(--ink); resize: vertical; }
+.faq-page-list { max-width: 820px; margin-top: 65px; border-top: 1px solid var(--line); }
+.faq-page-item { border-bottom: 1px solid var(--line); }
+.faq-page-item button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 0; border: 0; background: transparent; color: var(--ink); cursor: pointer; text-align: left; font-size: 15px; }
+.faq-page-item button svg { flex-shrink: 0; color: var(--gold); transition: transform .2s ease; }
+.faq-page-item button svg.rotate { transform: rotate(180deg); }
+.faq-page-item p { max-width: 650px; padding: 0 35px 24px 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+.faq-page-list + .page-callout { max-width: 820px; margin-top: 65px; }
 .result-page-strip { display: flex; gap: 14px; overflow-x: auto; margin: 65px 0 25px; padding-bottom: 12px; }
 .result-page-strip figure { position: relative; flex: 0 0 230px; height: 290px; margin: 0; overflow: hidden; background: var(--cream); }
 .result-page-strip img { width: 100%; height: 100%; display: block; object-fit: cover; }
@@ -274,7 +326,7 @@ h2 { line-height: 1.08; }
 .instagram-feature:hover img { transform: scale(1.03); }
 .instagram-feature span { position: absolute; left: 20px; bottom: 20px; display: inline-flex; align-items: center; gap: 8px; padding: 11px 14px; background: rgba(41,39,37,.86); color: white; font-size: 11px; }
 @media (max-width: 800px) { .instagram-page-grid { grid-template-columns: 1fr; gap: 35px; margin-top: 45px; }.instagram-feature { height: 340px; } }
-@media (max-width: 800px) { .site-page-main { padding-top: 72px; }.structure-grid, .patient-page-grid, .location-page-card, .contact-page-grid { grid-template-columns: 1fr; gap: 35px; }.structure-placeholder { height: 250px; }.patient-page-gallery { grid-template-rows: repeat(2, 145px); }.location-page-card iframe { min-height: 300px; } }
+@media (max-width: 800px) { .site-page-main { padding-top: 72px; }.structure-grid, .patient-page-grid, .location-page-card, .contact-page-grid, .enrollment-page-grid { grid-template-columns: 1fr; gap: 35px; }.structure-placeholder { height: 250px; }.patient-page-gallery { grid-template-rows: repeat(2, 145px); }.location-page-card iframe { min-height: 300px; } }
 @media (max-width: 480px) { .site-page-main h1 { font-size: 42px; }.structure-grid { margin-top: 45px; }.result-page-strip figure { flex-basis: 190px; height: 245px; } }
 @media (max-width: 800px) {
 	.contact-cta { grid-template-columns: 1fr; gap: 38px; }
@@ -294,3 +346,119 @@ h2 { line-height: 1.08; }
 .patient-gallery-frame span { position: absolute; left: 10px; bottom: 10px; padding: 5px 8px; background: rgba(41,39,37,.82); color: white; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
 @media (max-width: 800px) { .patient-area .patient-copy { padding: 72px 10vw; }.patient-gallery { height: 330px; } }
 @media (max-width: 480px) { .patient-area .patient-visual { padding: 20px; }.patient-gallery { height: 280px; gap: 7px; } }
+
+/* Section backgrounds create a quieter rhythm between content blocks. */
+.site-shell, .site-page { background: var(--paper); }
+.home-shell {
+	background:
+		radial-gradient(circle at 8% 8%, rgba(220, 222, 216, .48), transparent 25rem),
+		radial-gradient(circle at 92% 31%, rgba(229, 224, 216, .46), transparent 28rem),
+		var(--paper);
+}
+.home-shell .hero { position: relative; }
+.home-shell .hero::before {
+	content: '';
+	position: absolute;
+	z-index: 0;
+	inset: 22px -12vw 22px;
+	background: linear-gradient(110deg, rgba(228,238,232,.58), rgba(245,243,238,0) 64%);
+	border-top: 1px solid rgba(198,161,91,.2);
+	border-bottom: 1px solid rgba(198,161,91,.14);
+}
+.home-shell .hero > * { position: relative; z-index: 1; }
+.home-courses {
+	width: 100%;
+	max-width: none;
+	padding-left: max(5vw, calc((100% - var(--max)) / 2));
+	padding-right: max(5vw, calc((100% - var(--max)) / 2));
+	background: var(--mist);
+}
+.home-shell .home-courses { width: 100%; }
+.home-shell .results,
+.home-faq {
+	width: 100%;
+	max-width: none;
+	padding-left: max(5vw, calc((100% - var(--max)) / 2));
+	padding-right: max(5vw, calc((100% - var(--max)) / 2));
+}
+.home-course-card { background: rgba(255,255,255,.76); }
+.home-location {
+	width: 100%;
+	max-width: none;
+	padding-left: max(5vw, calc((100% - var(--max)) / 2));
+	padding-right: max(5vw, calc((100% - var(--max)) / 2));
+	background: var(--blush);
+}
+.home-location > * { position: relative; z-index: 1; }
+.home-location::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: rgba(198,161,91,.36);
+}
+.home-faq {
+	background: #f0ece5;
+	border-top-color: rgba(198,161,91,.28);
+}
+.home-faq-list { border-color: rgba(41,39,37,.2); }
+.contact-cta, .final-cta { background: #292724; }
+.home-shell > main > .contact-cta { display: grid; }
+.home-shell .contact-cta { padding-top: 88px; padding-bottom: 88px; }
+.home-shell .contact-cta h2 { font-size: clamp(38px, 4vw, 54px); }
+.home-shell .contact-prompt {
+	align-self: center;
+	background: #413d37 !important;
+	border: 0 !important;
+	padding: 32px !important;
+}
+.home-shell .contact-prompt h2 { font-size: 30px; }
+.home-shell .contact-prompt .button { background: #d1aa5f; color: var(--ink); }
+.final-cta .section-kicker, .final-cta em { color: #d5b56f; }
+.site-page-main {
+	width: 100%;
+	max-width: none;
+	padding-left: max(5vw, calc((100% - var(--max)) / 2));
+	padding-right: max(5vw, calc((100% - var(--max)) / 2));
+	background: linear-gradient(135deg, rgba(228,238,232,.46), transparent 38%);
+}
+.structure-placeholder { background: linear-gradient(135deg, var(--sage), var(--mist)); }
+.patient-page-grid, .location-page-card, .contact-page-grid, .enrollment-page-grid, .instagram-page-grid { position: relative; }
+.page-callout { background: var(--blush); padding: 32px; border-top: 2px solid var(--gold); }
+.contact-page-form, .enrollment-page-note { background: rgba(232,238,241,.72); padding: 30px; }
+.result-page-strip figure { background: var(--sage); }
+
+.home-shell footer {
+	padding-top: 48px;
+}
+.home-shell .footer-brand {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	max-width: 420px;
+}
+.home-shell .footer-brand img {
+	width: 38px;
+	height: 38px;
+	border-width: 1px;
+}
+.home-shell .footer-brand p {
+	margin: 0;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 12px;
+	line-height: 1.45;
+}
+.home-shell .footer-brand strong {
+	margin: 0 0 0 auto;
+}
+.home-shell .footer-links { margin-top: -42px; }
+.home-shell .footer-bottom { margin-top: 52px; }
+
+@media (max-width: 800px) {
+	.home-shell .hero::before { inset: 12px -8vw; }
+	.contact-page-form, .enrollment-page-note { padding: 24px; }
+	.home-shell .footer-brand { display: block; }
+	.home-shell .footer-brand strong { margin-top: 12px; }
+	.home-shell .footer-links { margin-top: 40px; }
+}

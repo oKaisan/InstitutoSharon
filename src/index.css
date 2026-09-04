@@ -1,16 +1,19 @@
 :root {
   font-family: 'DM Sans', sans-serif;
   color: #292725;
-  background: #faf8f3;
+  background: #f5f3ee;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   --ink: #292725;
   --muted: #736d66;
   --gold: #c6a15b;
-  --cream: #f3ebdd;
-  --paper: #faf8f3;
-  --line: #ded8cd;
+  --cream: #eee9df;
+  --paper: #f5f3ee;
+  --line: #d8d6cf;
+  --sage: #eeefeb;
+  --mist: #ecece8;
+  --blush: #f0ece5;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
