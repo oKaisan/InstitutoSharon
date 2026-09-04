@@ -19,7 +19,7 @@ export const locations: Location[] = [
     whatsapp: null,
     hours: null,
     image: null,
-    googleMapsUrl: 'https://www.bing.com/maps/directions?FORM=HDRSC6&style=r&rtp=%7Epos.-3.0698752403259277_-60.02503204345703_Avenida%2520Torquato%2520Tapaj%25C3%25B3s%252C%2520597%252C%2520Manaus%252C%2520Amazonas_Instituto%2520Sharon%2520%257C%2520Especializa%25C3%25A7%25C3%25A3o%2520e%2520P%25C3%25B3s%2520na%2520%C3%81rea%2520da%2520Sa%C3%BAde%2520%257C%2520Refer%C3%AAncia%2520em%2520HOF%2520em%2520Manaus_ypid%3AYN4C51A8C2837A2E75&cp=-3.069875%7E-60.025032&lvl=16',
+    googleMapsUrl: 'https://www.google.com/maps/place/Instituto+Sharon+%7C+Especializa%C3%A7%C3%A3o+e+P%C3%B3s+na+%C3%81rea+da+Sa%C3%BAde+%7C+Refer%C3%AAncia+em+HOF+em+Manaus/@-3.0698568,-60.0276067,17z/data=!3m1!4b1!4m6!3m5!1s0x926c1ba8e98b19ff:0xd3950fa77b7acfd1!8m2!3d-3.0698622!4d-60.0250318!16s%2Fg%2F11rd9336p8?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
     status: 'principal',
   },
 ]

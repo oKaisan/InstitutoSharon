@@ -9,7 +9,7 @@
 .nav-links a, .footer-links a { text-decoration: none; transition: color .2s ease; }
 .nav-links a:hover, .footer-links a:hover, .text-link:hover { color: var(--gold); }
 .nav-cta, .button { display: inline-flex; align-items: center; gap: 14px; text-decoration: none; transition: background .2s ease, transform .2s ease; }
-.nav-cta { padding: 13px 16px; background: var(--gold); color: white; }
+.nav-cta { padding: 13px 16px; background: var(--gold); color: white; border-radius: 999px; }
 .nav-cta:hover, .button:hover { transform: translateY(-2px); }
 .menu-toggle { display: none; border: 0; background: transparent; padding: 8px; }
 .hero { width: min(var(--max), calc(100% - 10vw)); min-height: 630px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 8vw; padding: 74px 0 90px; }
@@ -152,15 +152,15 @@ footer { padding: 70px max(5vw, calc((100% - var(--max)) / 2)) 24px; background:
 .contatos-social-premium { display: grid; grid-template-columns: .55fr .8fr 1.65fr; align-items: center; gap: 25px; margin-top: 82px; padding: 30px 28px; border: 1px solid rgba(198,161,91,.3); border-radius: 18px; background: rgba(243,238,228,.78); box-shadow: 10px 10px 0 rgba(198,161,91,.08); text-align: left; }
 .contatos-social-premium h3 { margin: 0; color: var(--ink); font-family: 'Playfair Display', serif; font-size: 23px; font-weight: 500; }
 .instagram-account-list { display: grid; grid-template-columns: repeat(2, minmax(180px, 1fr)); gap: 10px 24px; }
-.instagram-account { display: inline-flex; align-items: center; gap: 8px; padding: 10px 0; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(198,161,91,.35); transition: color .2s ease, transform .2s ease; }
+.instagram-account { display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 10px 0; color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(198,161,91,.35); transition: color .2s ease, transform .2s ease; }
 .instagram-account:hover { color: var(--gold); transform: translateX(4px); }
 .instagram-account span { display: grid; gap: 3px; flex: 1; }
-.instagram-account strong { font-size: 11px; font-weight: 600; }
+.instagram-account strong { overflow-wrap: anywhere; font-size: 11px; font-weight: 600; }
 .instagram-account small { color: var(--muted); font-size: 9px; }
 .site-page:has(.contatos-premium) .site-page-main::before { width: 150px; opacity: .9; box-shadow: 0 0 18px rgba(198,161,91,.18); }
 .site-page:has(.contatos-premium) .site-page-main::after { background: rgba(198,161,91,.28); box-shadow: 0 0 0 5px rgba(198,161,91,.1); }
 @media (max-width: 800px) { .contatos-premium { grid-template-columns: 1fr; gap: 45px; margin-top: 42px; }.contatos-intro { padding-top: 0; }.contatos-social-premium { grid-template-columns: 1fr; gap: 15px; margin-top: 55px; padding: 24px 20px; }.instagram-account-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 480px) { .contatos-departments { padding: 12px 15px; border-radius: 16px; }.contato-line { grid-template-columns: 30px 1fr; gap: 12px; padding: 18px 4px; }.contato-line-action { grid-column: 2; justify-self: start; }.contato-line-action span { display: inline; }.contatos-intro .page-intro { font-size: 16px; } }
+@media (max-width: 480px) { .contatos-departments { padding: 12px 15px; border-radius: 16px; }.contato-line { grid-template-columns: 30px 1fr; gap: 12px; padding: 18px 4px; }.contato-line-action { grid-column: 2; justify-self: start; }.contato-line-action span { display: inline; }.contatos-intro .page-intro { font-size: 16px; }.instagram-account-list { grid-template-columns: 1fr; }.instagram-account { width: 100%; }.instagram-account strong { font-size: 10px; } }
 
 /* Reduced white opacity */
 body { background: rgba(255,255,255,.98); }
@@ -462,6 +462,8 @@ h2 { line-height: 1.08; }
 .home-location h2 { margin-bottom: 16px; font-size: clamp(34px, 4vw, 52px); }
 .home-location p { color: var(--muted); font-size: 13px; line-height: 1.6; }
 .home-location iframe, .real-map { width: 100%; height: 260px; display: block; border: 1px solid var(--line); background: #e7e0d5; }
+.map-link-card { display: block; overflow: hidden; border-radius: 14px; }
+.map-link-card iframe { width: 100%; height: 100%; min-height: 260px; display: block; border: 1px solid var(--line); border-radius: 14px; }
 .real-map-link { display: block; overflow: hidden; }
 .real-map-link .real-map { object-fit: cover; transition: transform .5s ease; }
 .real-map-link:hover .real-map { transform: scale(1.02); }
@@ -509,6 +511,10 @@ h2 { line-height: 1.08; }
 .location-page-card p { color: var(--muted); line-height: 1.7; }
 .location-page-card iframe { width: 100%; min-height: 420px; border: 0; }
 .location-page-card .map-visual { min-height: 420px; }
+.location-page-card .map-link-card { min-height: 420px; }
+.location-page-card .map-link-card iframe { min-height: 420px; }
+.location-page-card .real-map { height: 420px; }
+@media (max-width: 800px) { .home-location { grid-template-columns: 1fr; gap: 30px; padding: 58px 0 65px; }.home-location iframe, .home-location .real-map { height: 230px; min-height: 230px; }.location-page-card .map-link-card, .location-page-card .map-link-card iframe { min-height: 300px; }.location-page-card .real-map { height: 300px; } }
 .contact-page-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; margin-top: 65px; padding-top: 30px; border-top: 1px solid var(--line); }
 .contact-page-facts { display: grid; align-content: start; gap: 28px; margin-top: 18px; }
 .contact-page-facts span { color: var(--muted); font-size: 13px; line-height: 1.7; }
@@ -569,10 +575,10 @@ h2 { line-height: 1.08; }
 .about-story-grid > div { max-width: 505px; padding-top: 8px; }
 .about-story-grid p, .about-founder-copy p, .about-difference-copy > p { color: var(--muted); font-size: 15px; line-height: 1.85; }
 .about-founder { display: grid; grid-template-columns: .9fr 1.1fr; gap: 10vw; align-items: center; padding: 115px 0 135px; }
-.about-founder-image { position: relative; min-height: 640px; padding: 12px; background: var(--cream); border-radius: 18px; overflow: hidden; }
+.about-founder-image { position: relative; min-height: 0; padding: 12px; background: var(--cream); border-radius: 18px; overflow: hidden; }
 .about-founder-image::before { content: ''; position: absolute; inset: 0; border: 1px solid rgba(198,161,91,.5); pointer-events: none; }
 .about-founder-image::after { content: ''; position: absolute; right: -24px; bottom: -24px; width: 54%; height: 42%; border-right: 1px solid var(--gold); border-bottom: 1px solid var(--gold); pointer-events: none; }
-.about-founder-image img { width: 100%; height: 100%; min-height: 615px; display: block; object-fit: cover; object-position: center; }
+.about-founder-image img { width: 100%; height: auto; min-height: 0; display: block; object-fit: contain; object-position: top center; background: linear-gradient(145deg, #f7f1e6, #e9dfce); }
 .about-founder-image > span { position: absolute; right: 28px; bottom: 28px; display: grid; gap: 3px; padding: 10px 14px; background: rgba(41,39,37,.82); color: #d8d0c5; font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
 .about-founder-image > span b { color: white; font-weight: 500; }
 .about-founder-copy h2 { max-width: 530px; margin: 22px 0 30px; }
@@ -642,8 +648,8 @@ h2 { line-height: 1.08; }
 	.about-hero-visual img { min-height: 390px; }
 	.about-hero-note { left: 18px; bottom: 22px; }
 	.about-story, .about-founder, .about-values, .about-vision, .about-difference, .about-structure { padding-top: 80px; padding-bottom: 85px; }
-	.about-founder-image { min-height: 520px; }
-	.about-founder-image img { min-height: 495px; }
+	.about-founder-image { min-height: 0; }
+	.about-founder-image img { min-height: 0; }
 	.about-purpose { padding: 80px 5vw; }
 	.about-purpose-content { margin-top: 20px; }
 	.about-difference { padding-left: 5vw; padding-right: 5vw; }
@@ -655,8 +661,8 @@ h2 { line-height: 1.08; }
 	.about-hero-visual { min-height: 330px; padding: 8px; }
 	.about-hero-visual img { min-height: 310px; }
 	.about-hero-note { min-width: 165px; padding: 13px 16px; }
-	.about-founder-image { min-height: 420px; }
-	.about-founder-image img { min-height: 395px; }
+	.about-founder-image { min-height: 0; }
+	.about-founder-image img { min-height: 0; }
 	.about-founder-image::after { right: -12px; bottom: -12px; }
 	.about-values-list article { grid-template-columns: 34px 24px 1fr; gap: 10px; }
 	.about-values-list h3 { font-size: 22px; }

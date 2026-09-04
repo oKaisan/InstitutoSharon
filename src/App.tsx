@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ArrowUpRight, AtSign, ChevronDown, GraduationCap, HeartHandshake, Lightbulb, MapPin, Menu, MessageCircle, MoveRight, Search, ShieldCheck, Sparkles, X } from 'lucide-react'
+import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
 import './App.css'
 import './footer.css'
 import { locations, locationSearchUrl } from './data/locations'
 
 const imageRoot = '/images/instituto'
-const publicLocationUrl = 'https://www.google.com/maps/search/?api=1&query=Instituto+Sharon%2C+Avenida+Torquato+Tapajos%2C+597%2C+Manaus%2C+AM'
+const publicLocationUrl = 'https://www.google.com/maps/place/Instituto+Sharon+%7C+Especializa%C3%A7%C3%A3o+e+P%C3%B3s+na+%C3%81rea+da+Sa%C3%BAde+%7C+Refer%C3%AAncia+em+HOF+em+Manaus/@-3.0698568,-60.0276067,17z/data=!3m1!4b1!4m6!3m5!1s0x926c1ba8e98b19ff:0xd3950fa77b7acfd1!8m2!3d-3.0698622!4d-60.0250318!16s%2Fg%2F11rd9336p8?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D'
 const logo = `${imageRoot}/logo/${encodeURIComponent('Logo instituto sharon.PNG')}`
 const courseImages = [
   'WhatsApp Image 2026-09-03 at 20.09.00.jpeg',
@@ -67,6 +69,20 @@ const contatos = [
   { name: 'Cursos — Brenda', link: 'https://wa.me/message/R7WZMDZHTWTEL1' },
   { name: 'Paciente Modelo', link: 'https://wa.me/message/A2GSIBFAIHJ5N1' },
 ]
+
+function LocationMap() {
+  const mapElement = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!mapElement.current) return
+    const map = L.map(mapElement.current, { scrollWheelZoom: false }).setView([-3.0698622, -60.0250318], 16)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map)
+    L.marker([-3.0698622, -60.0250318]).addTo(map).bindPopup('Instituto Sharon').openPopup()
+    return () => { map.remove() }
+  }, [])
+
+  return <div className="real-map" ref={mapElement} aria-label="Mapa real do Instituto Sharon em Manaus" />
+}
 const instagramAccounts = [
   { name: '@institutosharon', label: 'Perfil principal', link: 'https://www.instagram.com/institutosharon/' },
   { name: '@instituto_sharonfortaleza', label: 'Fortaleza', link: 'https://www.instagram.com/instituto_sharonfortaleza/' },
@@ -130,7 +146,7 @@ function PatientsPage() {
 
 function LocationsPage() {
   const location = locations[0]
-  return <SitePage title="Estamos em" emphasis="Manaus." eyebrow="Instituto Sharon / Onde estamos"><p className="page-intro">Venha conhecer a unidade principal do Instituto Sharon.</p><article className="location-page-card"><div><span className="location-tag"><MapPin size={14} /> Unidade principal</span><h2>Manaus — AM</h2><p>{location.address}</p><a className="button button-dark" href={publicLocationUrl} target="_blank" rel="noreferrer">Abrir no Google Maps <ArrowUpRight size={16} /></a></div><a className="map-link-card" href={publicLocationUrl} target="_blank" rel="noreferrer"><div className="map-visual" role="img" aria-label="Localização do Instituto Sharon em Manaus"><span className="map-marker"><MapPin size={20} /><b>Instituto Sharon</b></span><small>Mapa da unidade<br />Clique para abrir</small></div></a></article></SitePage>
+  return <SitePage title="Estamos em" emphasis="Manaus." eyebrow="Instituto Sharon / Onde estamos"><p className="page-intro">Venha conhecer a unidade principal do Instituto Sharon.</p><article className="location-page-card"><div><span className="location-tag"><MapPin size={14} /> Unidade principal</span><h2>Manaus — AM</h2><p>{location.address}</p><a className="button button-dark" href={publicLocationUrl} target="_blank" rel="noreferrer">Abrir no Google Maps <ArrowUpRight size={16} /></a></div><div className="map-link-card"><LocationMap /></div></article></SitePage>
 }
 
 function ContactPage() {
@@ -208,7 +224,7 @@ function App() {
       <section className="patient-band patient-area" id="pacientes"><div className="patient-copy"><div className="section-kicker">04 / Para pacientes</div><h2>Cuidados pensados<br /><em>para você.</em></h2><p>Conheça as áreas de atendimento do Instituto Sharon em Manaus, com técnica, acolhimento e responsabilidade.</p><div className="patient-categories"><span>Estética</span><span>Odontologia</span><span>Harmonização Orofacial</span><span>Saúde</span><span>Bem-estar</span></div><a className="button button-light" href="#contato">Agendar atendimento <MoveRight size={17} /></a></div><div className="patient-visual"><div className="patient-gallery">{patientImages.slice(0, 3).map((image, index) => <div className="patient-gallery-frame" key={image}><img src={`${imageRoot}/pacientes/${encodeURIComponent(image)}`} alt={`Imagem de atendimento para pacientes ${index + 1}`} loading="lazy" /><span>{index === 0 ? 'Atendimento' : index === 1 ? 'Cuidado' : 'Resultado'}</span></div>)}</div></div></section>
       <section className="model-section model-before-after section-pad"><div className="model-art"><div className="model-pair"><div><img src={`${imageRoot}/pacientes/${encodeURIComponent(patientImages[0])}`} alt="Imagem de referência antes do procedimento" /><span>Antes</span></div><div><img src={`${imageRoot}/pacientes/${encodeURIComponent(patientImages[1])}`} alt="Imagem de referência depois do procedimento" /><span>Depois</span></div></div></div><div className="model-copy"><div className="section-kicker">05 / Experiência prática</div><h2>Seja um <em>Paciente Modelo.</em></h2><p>Participe das experiências práticas do Instituto Sharon e acompanhe de perto procedimentos realizados em um ambiente de formação e supervisão profissional.</p><p className="model-note">Resultados e imagens apresentados devem ser confirmados e autorizados pela equipe.</p><a className="button button-dark" href="#matricula">Quero ser paciente modelo <ArrowUpRight size={16} /></a></div></section>
       <section className="results section-pad" id="resultados"><div className="section-heading"><div><div className="section-kicker">06 / Antes e depois</div><h2>Resultados que <em>continuam.</em></h2></div><a className="text-link" href="https://www.instagram.com/institutosharon/" target="_blank" rel="noreferrer">Ver no Instagram <AtSign size={16} /></a></div><div className="result-strip" aria-label="Galeria de antes e depois"><div className="result-track">{[...patientImages, ...patientImages].map((image, index) => <div className="result-frame" key={`${image}-${index}`}><img src={`${imageRoot}/pacientes/${encodeURIComponent(image)}`} alt={`${index % 2 === 0 ? 'Antes' : 'Depois'}: resultado de paciente ${index % patientImages.length + 1}`} loading="lazy" /><span className="result-label">{index % 2 === 0 ? 'Antes' : 'Depois'}</span></div>)}</div></div><div className="carousel-controls"><span>Imagens de referência, sujeitas à confirmação da equipe</span><a className="text-link" href="https://www.instagram.com/institutosharon/" target="_blank" rel="noreferrer">Ver mais <AtSign size={16} /></a></div></section>
-      <section className="home-location"><div><div className="section-kicker">Instituto Sharon / Manaus</div><h2>Estamos em <em>Manaus.</em></h2><p>Avenida Torquato Tapajós, 597, Manaus - AM</p><a className="text-link" href="#unidades">Ver detalhes da unidade <ArrowUpRight size={16} /></a></div><a className="map-link-card" href={publicLocationUrl} target="_blank" rel="noreferrer"><div className="map-visual" role="img" aria-label="Localização do Instituto Sharon em Manaus"><span className="map-marker"><MapPin size={20} /><b>Instituto Sharon</b></span><small>Manaus - AM<br />Abrir mapa</small></div></a></section>
+      <section className="home-location"><div><div className="section-kicker">Instituto Sharon / Manaus</div><h2>Estamos em <em>Manaus.</em></h2><p>Avenida Torquato Tapajós, 597, Manaus - AM</p><a className="text-link" href="#unidades">Ver detalhes da unidade <ArrowUpRight size={16} /></a></div><div className="map-link-card"><LocationMap /></div></section>
       <section className="locations section-pad" id="unidades"><div className="section-heading"><div><div className="section-kicker">07 / Onde estamos</div><h2>Estamos em <em>Manaus.</em></h2></div><p>Venha conhecer o Instituto Sharon.</p></div><div className="location-list">{locations.map((location) => <article className={location.status === 'principal' ? 'location-card location-card-primary' : 'location-card'} key={`${location.city}-${location.state}`}><div className="location-details"><span className="location-tag"><MapPin size={14} /> {location.status === 'principal' ? 'Unidade principal' : 'Unidade editável'}</span><h3>{location.city} — {location.state}</h3><p>{location.address ?? 'Endereço oficial da unidade'}<br /><small>{location.address ? '' : 'A confirmar pela equipe Instituto Sharon'}</small></p><div className="location-info"><span><strong>Contato</strong><br />{location.whatsapp ?? 'WhatsApp oficial a confirmar'}</span><span><strong>Atendimento</strong><br />{location.hours ?? 'Horário a confirmar'}</span></div><div className="hero-actions"><a className="button button-dark" href="#contato">Falar pelo WhatsApp <MessageCircle size={16} /></a><a className="text-link" href={location.googleMapsUrl ?? locationSearchUrl} target="_blank" rel="noreferrer">{location.googleMapsUrl ? 'Ver rota no Google Maps' : 'Pesquisar no Google Maps'} <ArrowUpRight size={16} /></a></div></div><div className="map-placeholder"><MapPin size={28} /><strong>{location.city}, {location.state}</strong><span>{location.googleMapsUrl ? 'Localização oficial do Instituto Sharon.' : 'Mapa e rota exata serão conectados após a confirmação do endereço oficial.'}</span></div></article>)}</div><div className="location-footer"><span>Instituto Sharon pelo Brasil</span><span>{locations.length === 1 ? 'Manaus é a unidade principal deste projeto.' : 'Outras unidades confirmadas pelo Instituto Sharon.'}</span></div></section>
       <div className="home-final-sections"><section className="contact-cta section-pad" id="contato"><div className="faq"><div className="section-kicker">08 / Fale com a equipe</div><h2>Vamos conversar<br />sobre o seu <em>próximo passo.</em></h2><p className="contact-lead">Conecte-se conosco através do WhatsApp ou redes sociais para melhor atendimento.</p><div className="contact-facts"><span><strong>Localização</strong><br />Manaus — AM</span><span><strong>Instagram</strong><br />@institutosharon</span></div><div className="whatsapp-button-group">{contatos.map((contato) => <a key={contato.name} href={contato.link} target="_blank" rel="noreferrer"><MessageCircle size={18} />{contato.name}</a>)}</div></div></section><FAQSection /></div>
     </main>
