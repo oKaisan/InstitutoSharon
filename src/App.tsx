@@ -77,7 +77,7 @@ function LocationMap() {
     if (!mapElement.current) return
     const map = L.map(mapElement.current, { scrollWheelZoom: false }).setView([-3.0698622, -60.0250318], 16)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; OpenStreetMap contributors' }).addTo(map)
-    L.marker([-3.0698622, -60.0250318]).addTo(map).bindPopup('Instituto Sharon').openPopup()
+    L.circleMarker([-3.0698622, -60.0250318], { radius: 9, color: '#ffffff', weight: 3, fillColor: '#2f78c4', fillOpacity: 1 }).addTo(map).bindPopup('Instituto Sharon').openPopup()
     return () => { map.remove() }
   }, [])
 
