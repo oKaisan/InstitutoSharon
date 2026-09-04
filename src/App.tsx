@@ -67,6 +67,12 @@ const contatos = [
   { name: 'Cursos — Brenda', link: 'https://wa.me/message/R7WZMDZHTWTEL1' },
   { name: 'Paciente Modelo', link: 'https://wa.me/message/A2GSIBFAIHJ5N1' },
 ]
+const instagramAccounts = [
+  { name: '@institutosharon', label: 'Perfil principal', link: 'https://www.instagram.com/institutosharon/' },
+  { name: '@instituto_sharonfortaleza', label: 'Fortaleza', link: 'https://www.instagram.com/instituto_sharonfortaleza/' },
+  { name: '@institutosharon_saopaulo', label: 'São Paulo', link: 'https://www.instagram.com/institutosharon_saopaulo/' },
+  { name: '@institutosharon_portovelho', label: 'Porto Velho', link: 'https://www.instagram.com/institutosharon_portovelho/' },
+]
 const faqItems = [
   { question: 'Quais cursos o Instituto Sharon oferece?', answer: 'Oferecemos formações em saúde, estética, odontologia e harmonização orofacial. Consulte nosso catálogo para conhecer as opções disponíveis.' },
   { question: 'Como faço para me matricular?', answer: 'Preencha o formulário de matrícula ou fale diretamente com nossa equipe pelo WhatsApp para receber informações sobre turmas e condições.' },
@@ -156,7 +162,7 @@ function EstruturaiPage() {
 }
 
 function ContatosPage() {
-  return <SitePage title="Entre em" emphasis="contato." eyebrow="Instituto Sharon / Contato"><p className="page-intro">Escolha o departamento desejado e fale conosco pelo WhatsApp.</p><div className="contatos-grid">{contatos.map((contato) => <div key={contato.name} className="contato-card"><h3>{contato.name}</h3><a href={contato.link} target="_blank" rel="noreferrer" className="button button-dark"><MessageCircle size={16} />Falar pelo WhatsApp</a></div>)}</div><div className="contatos-social"><h3>Siga-nos também em</h3><a href="https://www.instagram.com/institutosharon/" target="_blank" rel="noreferrer" className="social-link"><AtSign size={18} />@institutosharon</a></div></SitePage>
+  return <SitePage title="Entre em" emphasis="contato." eyebrow="Instituto Sharon / Contato"><div className="contatos-premium"><div className="contatos-intro"><span className="contatos-index">01 / Atendimento</span><p className="page-intro">Escolha o departamento desejado e fale com a equipe do Instituto Sharon pelo WhatsApp.</p><div className="contatos-location"><MapPin size={17} /><span>Manaus — AM<br /><small>Avenida Torquato Tapajós, 597</small></span></div></div><div className="contatos-departments">{contatos.map((contato, index) => <article className="contato-line" key={contato.name}><span className="contato-line-number">0{index + 1}</span><div><span className="section-kicker">Atendimento especializado</span><h2>{contato.name}</h2></div><a href={contato.link} target="_blank" rel="noreferrer" className="contato-line-action" aria-label={`Falar com ${contato.name} pelo WhatsApp`}><MessageCircle size={18} /><span>Falar agora</span><ArrowUpRight size={17} /></a></article>)}</div></div><div className="contatos-social contatos-social-premium"><span className="section-kicker">Continue conectado</span><h3>Acompanhe o Instituto Sharon no Instagram.</h3><div className="instagram-account-list">{instagramAccounts.map((account) => <a key={account.name} href={account.link} target="_blank" rel="noreferrer" className="instagram-account"><AtSign size={16} /><span><strong>{account.name}</strong><small>{account.label}</small></span><ArrowUpRight size={15} /></a>)}</div></div></SitePage>
 }
 
 function App() {
@@ -167,7 +173,7 @@ function App() {
   useEffect(() => {
     const canReveal = 'IntersectionObserver' in window
     if (canReveal) document.documentElement.classList.add('reveal-ready')
-    const revealTargets = document.querySelectorAll<HTMLElement>('.section-pad > *, .patient-copy, .patient-visual, .pillar, .course-card, .location-card, .site-page-main > *, .courses-page-main > *, .structure-card, .course-page-card, .estrutura-category, .estrutura-item, .patient-page-gallery img, .contact-page-form, .enrollment-page-note, .location-page-card, .instagram-feature, .result-page-strip figure, .contato-card, .contatos-social, .faq-page-item')
+    const revealTargets = document.querySelectorAll<HTMLElement>('.section-pad > *, .patient-copy, .patient-visual, .pillar, .course-card, .location-card, .site-page-main > *, .courses-page-main > *, .about-page-main > section, .about-story-grid > *, .about-founder-image, .about-founder-copy, .about-values-list article, .about-difference-list article, .about-structure-image, .about-closing, .structure-card, .course-page-card, .estrutura-category, .estrutura-item, .patient-page-gallery img, .contact-page-form, .enrollment-page-note, .location-page-card, .instagram-feature, .result-page-strip figure, .contato-card, .contatos-social, .contato-line, .instagram-account, .faq-page-item')
     const observer = canReveal ? new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
